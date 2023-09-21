@@ -37,7 +37,7 @@ int pf_char(va_list args)
 
 /**
 * pf_perc - function that prints char.
-* @args: format string.
+*
 * Return: number of characters printed.
 */
 
