@@ -8,26 +8,39 @@
 
 int print_number(int n)
 {
-	unsigned int i, l = 0;
+	int n = va_arg(args, int);
+	int num, last = n % 10, digit, exp = 1;
+	int  i = 1;
 
-	if (n < 0)
+	n = n / 10;
+	num = n;
+
+	if (last < 0)
 	{
-		i = -n;
 		_putchar('-');
-		l++;
+		num = -num;
+		n = -n;
+		last = -last;
+		i++;
 	}
-	else
+	if (num > 0)
 	{
-		i = n;
+		while (num / 10 != 0)
+		{
+			exp = exp * 10;
+			num = num / 10;
+		}
+		num = n;
+		while (exp > 0)
+		{
+			digit = num / exp;
+			_putchar(digit + '0');
+			num = num - (digit * exp);
+			exp = exp / 10;
+			i++;
+		}
 	}
+	_putchar(last + '0');
 
-	if (i / 10)
-	{
-		l++;
-		print_number(i / 10);
-	}
-
-	_putchar((i % 10) + '0');
-	l++;
-	return (l);
+	return (i);
 }
